@@ -1,0 +1,34 @@
+version: '3'
+
+services:
+  db:
+    image: mysql:5.7
+    volumes:
+      - "./.data/db:/var/lib/mysql"
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    ports:
+      - "82:80"
+    environment:
+      PMA_HOST: db
+      PMA_USER: ${MYSQL_USER}
+      PMA_PASSWORD: ${MYSQL_PASSWORD}
+      PMA_PORT: 3306
+  php:
+    build: .docker/php
+    working_dir: /var/www/html
+    volumes:
+      - ./:/var/www/html
+    environment:
+      DATABASE_DRIVER: "pdo_mysql"
+      DATABASE_URL: ${DATABASE_URL}
+    command: bash -c "composer install &&
+      bash ./.docker/scripts/setup.sh &&
+      php -d variables_order=EGPCS -S 0.0.0.0:80 -t public"
+    ports:
+      - 80:80
