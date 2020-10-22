@@ -9,8 +9,8 @@ use Symfony\Component\HttpFoundation\Request;
 interface PostCategoryResponseInterface
 {
     /**
-     * @param CategoryMessage $message
+     * @param array $request
      * @return View
      */
-    public function render(CategoryMessage $message): View;
+    public function render(array $request): View;
 }

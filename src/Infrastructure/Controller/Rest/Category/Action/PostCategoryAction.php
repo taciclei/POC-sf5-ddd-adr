@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Infrastructure\Controller\Rest\Category\Action;
 
+use App\Application\HydratorRequest;
+use App\Application\HydratorRequestInterface;
 use Doctrine\ORM\EntityManagerInterface;
 use Ecommerce\Entity\Category;
 use Ecommerce\Message\CategoryMessage;
@@ -59,12 +61,19 @@ class PostCategoryAction extends AbstractFOSRestController
      * @param Category $category
      * @return View
      */
-    public function postCategory(MessageBusInterface $bus,Request $request): View
-    {
-        $bus->dispatch(new CategoryMessage($request));
+    //public function postCategory(MessageBusInterface $bus,Request $request): View
+    //{
+        //$bus->dispatch(new CategoryMessage($request));
         //$this->entityManager->persist($category);
         //$this->entityManager->flush();
 
         //return View::create($category, Response::HTTP_CREATED);
+    //}
+
+    public function __invoke(Request $request, HydratorRequestInterface $hydratorRequest)
+    {
+        //dd($hydratorRequest);
+        $values = current(json_decode($request->getContent(), true));
+        return $this->responder->render($values);
     }
 }

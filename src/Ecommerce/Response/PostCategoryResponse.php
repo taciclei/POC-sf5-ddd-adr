@@ -28,12 +28,11 @@ class PostCategoryResponse implements PostCategoryResponseInterface
 
 
     /**
-     * @param CategoryMessage $message
+     * @param array $request
      * @return View
      */
-    public function render(CategoryMessage $message):View {
-        dd($message->toArray());
-        $data = current(json_decode($request->getContent(), true));
+    public function render(array $request):View {
+        print_r($request);die;
 
         $category = new Category();
         $category->setName($data['name']);

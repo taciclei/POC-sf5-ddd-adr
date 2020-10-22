@@ -1,4 +1,7 @@
 # see https://symfony.com/doc/current/reference/configuration/framework.html
+web_profiler:
+    toolbar: true
+    intercept_redirects: false
 framework:
     secret: '%env(APP_SECRET)%'
     #csrf_protection: true
