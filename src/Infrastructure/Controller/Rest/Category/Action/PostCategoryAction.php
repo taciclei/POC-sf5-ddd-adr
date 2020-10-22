@@ -17,6 +17,8 @@ use Symfony\Component\HttpFoundation\Response;
 use OpenApi\Annotations as OA;
 use Nelmio\ApiDocBundle\Annotation\Model;
 use Symfony\Component\Messenger\MessageBusInterface;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Entity;
 
 class PostCategoryAction extends AbstractFOSRestController
 {
@@ -54,18 +56,15 @@ class PostCategoryAction extends AbstractFOSRestController
      *         )
      *     )
      * )
-     * @param Request $request
+     * @param Category $category
      * @return View
      */
-    public function postCategory(Request $request): View
+    public function postCategory(MessageBusInterface $bus,Request $request): View
     {
-        $data = current(json_decode($request->getContent(), true));
+        $bus->dispatch(new CategoryMessage($request));
+        //$this->entityManager->persist($category);
+        //$this->entityManager->flush();
 
-        $category = new Category();
-        $category->setName($data['name']);
-        $this->entityManager->persist($category);
-        $this->entityManager->flush();
-
-        return View::create($category, Response::HTTP_CREATED);
+        //return View::create($category, Response::HTTP_CREATED);
     }
 }

@@ -22,7 +22,7 @@ class Category
    * @ORM\Column(name="name", type="string", length=255)
    * @OA\Property(type="string", maxLength=255)
    */
-  private $name;
+  public $name;
 
   /**
    * @return int

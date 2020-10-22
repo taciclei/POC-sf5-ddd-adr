@@ -4,6 +4,7 @@ namespace Ecommerce\Response;
 
 use Doctrine\ORM\EntityManagerInterface;
 use Ecommerce\Entity\Category;
+use Ecommerce\Message\CategoryMessage;
 use FOS\RestBundle\View\View;
 use Infrastructure\Doctrine\Ecommerce\Repository\CategoryRepositoryInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -27,10 +28,11 @@ class PostCategoryResponse implements PostCategoryResponseInterface
 
 
     /**
-     * @param Request $request
+     * @param CategoryMessage $message
      * @return View
      */
-    public function render(Request $request):View {
+    public function render(CategoryMessage $message):View {
+        dd($message->toArray());
         $data = current(json_decode($request->getContent(), true));
 
         $category = new Category();

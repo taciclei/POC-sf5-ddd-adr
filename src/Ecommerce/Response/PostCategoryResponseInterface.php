@@ -2,14 +2,15 @@
 
 namespace Ecommerce\Response;
 
+use Ecommerce\Message\CategoryMessage;
 use FOS\RestBundle\View\View;
 use Symfony\Component\HttpFoundation\Request;
 
 interface PostCategoryResponseInterface
 {
     /**
-     * @param Request $request
+     * @param CategoryMessage $message
      * @return View
      */
-    public function render(Request $request): View;
+    public function render(CategoryMessage $message): View;
 }
