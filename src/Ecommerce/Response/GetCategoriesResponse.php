@@ -8,7 +8,7 @@ use FOS\RestBundle\View\View;
 use Infrastructure\Doctrine\Ecommerce\Repository\CategoryRepositoryInterface;
 use Symfony\Component\HttpFoundation\Response;
 
-class PostCategoryResponse implements PostCategoryResponseInterface
+class GetCategoriesResponse implements GetCategoriesResponseInterface
 {
     private CategoryRepositoryInterface $categoryRepository;
     private EntityManagerInterface $entityManager;
@@ -25,16 +25,11 @@ class PostCategoryResponse implements PostCategoryResponseInterface
     }
 
     /**
-     * @param  $categoryDto
      * @return View
      */
-    public function render(object $categoryDto):View {
+    public function render():View {
 
-        $category = new Category();
-        $category->setName($categoryDto->getName());
-        $this->entityManager->persist($category);
-        $this->entityManager->flush();
 
-        return View::create($category, Response::HTTP_CREATED);
+        return View::create($this->categoryRepository->findAll(), Response::HTTP_CREATED);
     }
 }

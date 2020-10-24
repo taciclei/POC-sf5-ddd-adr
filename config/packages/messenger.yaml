@@ -9,5 +9,5 @@ framework:
         routing:
             # Route your messages to the transports
             # 'App\Message\YourMessage': async
-            Ecommerce\Message\CategoryMessage: async
+            #Ecommerce\Message\CategoryMessage: async
 

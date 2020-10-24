@@ -1,7 +1,6 @@
 <?php
-// src/OC/PlatformBundle/Entity/Application.php
 
-namespace OC\PlatformBundle\Entity;
+namespace Ecommerce\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 

@@ -2,15 +2,15 @@
 
 namespace Ecommerce\Response;
 
-use Ecommerce\Message\CategoryMessage;
+use Ecommerce\Dto\CategoryDto;
+use Ecommerce\Dto\CategoryDtoInterface;
 use FOS\RestBundle\View\View;
-use Symfony\Component\HttpFoundation\Request;
 
 interface PostCategoryResponseInterface
 {
     /**
-     * @param array $request
+     * @param CategoryDtoInterface $categoryDto
      * @return View
      */
-    public function render(array $request): View;
+    public function render(CategoryDto $categoryDto): View;
 }

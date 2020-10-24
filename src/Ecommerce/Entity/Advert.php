@@ -1,7 +1,6 @@
 <?php
-// src/OC/PlatformBundle/Entity/Advert.php
 
-namespace OC\PlatformBundle\Entity;
+namespace Ecommerce\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;

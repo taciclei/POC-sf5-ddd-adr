@@ -4,43 +4,27 @@ declare(strict_types=1);
 
 namespace Infrastructure\Controller\Rest\Category\Action;
 
-use App\Application\HydratorRequest;
-use App\Application\HydratorRequestInterface;
-use Doctrine\ORM\EntityManagerInterface;
+use Ecommerce\Dto\CategoryDtoInterface;
 use Ecommerce\Entity\Category;
-use Ecommerce\Message\CategoryMessage;
 use Ecommerce\Response\PostCategoryResponseInterface;
 use FOS\RestBundle\Controller\AbstractFOSRestController;
 use FOS\RestBundle\View\View;
-use Infrastructure\Doctrine\Ecommerce\Repository\CategoryRepositoryInterface;
-use Symfony\Component\HttpFoundation\Request;
 use FOS\RestBundle\Controller\Annotations as Rest;
-use Symfony\Component\HttpFoundation\Response;
 use OpenApi\Annotations as OA;
 use Nelmio\ApiDocBundle\Annotation\Model;
-use Symfony\Component\Messenger\MessageBusInterface;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Entity;
 
 class PostCategoryAction extends AbstractFOSRestController
 {
-    public CategoryRepositoryInterface $categoryRepository;
-    public EntityManagerInterface $entityManager;
     public PostCategoryResponseInterface $responder;
 
     /**
      * PostCategoryAction constructor.
-     * @param CategoryRepositoryInterface $categoryRepository
-     * @param EntityManagerInterface $entityManager
      * @param PostCategoryResponseInterface $responder
      */
-    public function __construct(CategoryRepositoryInterface $categoryRepository, EntityManagerInterface $entityManager, PostCategoryResponseInterface $responder)
+    public function __construct(PostCategoryResponseInterface $responder)
     {
-        $this->categoryRepository = $categoryRepository;
-        $this->entityManager = $entityManager;
         $this->responder = $responder;
     }
-
 
     /**
      * Creates an category resource
@@ -58,22 +42,11 @@ class PostCategoryAction extends AbstractFOSRestController
      *         )
      *     )
      * )
-     * @param Category $category
+     * @param CategoryDtoInterface $categoryDto
      * @return View
      */
-    //public function postCategory(MessageBusInterface $bus,Request $request): View
-    //{
-        //$bus->dispatch(new CategoryMessage($request));
-        //$this->entityManager->persist($category);
-        //$this->entityManager->flush();
-
-        //return View::create($category, Response::HTTP_CREATED);
-    //}
-
-    public function __invoke(Request $request, HydratorRequestInterface $hydratorRequest)
+    public function __invoke(CategoryDtoInterface $categoryDto): View
     {
-        //dd($hydratorRequest);
-        $values = current(json_decode($request->getContent(), true));
-        return $this->responder->render($values);
+        return $this->responder->render($categoryDto);
     }
 }
