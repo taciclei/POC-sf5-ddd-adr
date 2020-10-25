@@ -1,8 +1,8 @@
 <?php
 
-namespace Ecommerce\Dto;
+namespace Ecommerce\Category\Dto;
 
-use Application\HydratorMethods;
+use Application\Traits\HydratorMethods;
 
 class CategoryDto implements CategoryDtoInterface
 {

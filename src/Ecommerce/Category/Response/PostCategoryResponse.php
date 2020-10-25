@@ -1,6 +1,6 @@
 <?php
 
-namespace Ecommerce\Response;
+namespace Ecommerce\Category\Response;
 
 use Doctrine\ORM\EntityManagerInterface;
 use Ecommerce\Entity\Category;

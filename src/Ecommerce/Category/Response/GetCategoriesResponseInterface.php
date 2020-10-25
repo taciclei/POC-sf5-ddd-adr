@@ -1,6 +1,6 @@
 <?php
 
-namespace Ecommerce\Response;
+namespace Ecommerce\Category\Response;
 
 use FOS\RestBundle\View\View;
 

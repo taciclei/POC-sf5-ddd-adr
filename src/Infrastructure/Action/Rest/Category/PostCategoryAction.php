@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Infrastructure\Controller\Rest\Category\Action;
+namespace Infrastructure\Action\Rest\Category;
 
-use Ecommerce\Dto\CategoryDtoInterface;
+use Ecommerce\Category\Dto\CategoryDtoInterface;
+use Ecommerce\Category\Response\PostCategoryResponseInterface;
 use Ecommerce\Entity\Category;
-use Ecommerce\Response\PostCategoryResponseInterface;
 use FOS\RestBundle\Controller\AbstractFOSRestController;
 use FOS\RestBundle\View\View;
 use FOS\RestBundle\Controller\Annotations as Rest;

@@ -36,21 +36,18 @@ services:
 
     # controllers are imported separately to make sure services can be injected
     # as action arguments even if you don't extend any base controller class
-    Infrastructure\Controller\Rest\:
-        resource: '../src/Infrastructure/Controller/Rest/'
+    Infrastructure\Action\Rest\:
+        resource: '../src/Infrastructure/Action/Rest/'
         tags: [ 'controller.service_arguments' ]
-    App\Controller\:
-        resource: '../src/Controller/'
-        tags: ['controller.service_arguments']
 
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
 
-    Ecommerce\Dto\CategoryDto:
+    Ecommerce\Category\Dto\CategoryDto:
          calls:
             - hydrateJson: ["@=service('request_stack').getCurrentRequest().getContent()"]
 
-    Infrastructure\Controller\Rest\Category\Action\PostCategoryAction:
+    Infrastructure\Action\Rest\Category\PostCategoryAction:
     Laminas\Hydrator\ClassMethodsHydrator:
         class: Laminas\Hydrator\ClassMethodsHydrator
         autowire: false

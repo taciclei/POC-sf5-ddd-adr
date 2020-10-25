@@ -1,6 +1,6 @@
 <?php
 
-namespace Application;
+namespace Application\Traits;
 
 use Laminas\Hydrator\ClassMethodsHydrator;
 

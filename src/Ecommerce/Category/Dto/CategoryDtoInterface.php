@@ -1,6 +1,6 @@
 <?php
 
-namespace Ecommerce\Dto;
+namespace Ecommerce\Category\Dto;
 
 interface CategoryDtoInterface
 {

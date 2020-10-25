@@ -1,9 +1,9 @@
 <?php
 
-namespace Ecommerce\Response;
+namespace Ecommerce\Category\Response;
 
-use Ecommerce\Dto\CategoryDto;
-use Ecommerce\Dto\CategoryDtoInterface;
+use Ecommerce\Category\Dto\CategoryDto;
+use Ecommerce\Category\Dto\CategoryDtoInterface;
 use FOS\RestBundle\View\View;
 
 interface PostCategoryResponseInterface
