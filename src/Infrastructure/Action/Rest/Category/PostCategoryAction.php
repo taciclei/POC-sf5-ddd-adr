@@ -42,6 +42,7 @@ class PostCategoryAction extends AbstractFOSRestController
      *         )
      *     )
      * )
+     * @OA\Tag(name="category")
      * @param CategoryDtoInterface $categoryDto
      * @return View
      */

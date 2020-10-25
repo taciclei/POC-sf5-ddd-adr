@@ -19,8 +19,6 @@ services:
     Ecommerce\:
         resource: '../src/Ecommerce'
         public: true
-        exclude:
-            - '../src/Ecommerce/Message/'
     Infrastructure\:
         resource: '../src/Infrastructure'
     App\:
@@ -48,6 +46,7 @@ services:
             - hydrateJson: ["@=service('request_stack').getCurrentRequest().getContent()"]
 
     Infrastructure\Action\Rest\Category\PostCategoryAction:
+    Infrastructure\Action\Rest\GetCategoryActiont:
     Laminas\Hydrator\ClassMethodsHydrator:
         class: Laminas\Hydrator\ClassMethodsHydrator
         autowire: false
