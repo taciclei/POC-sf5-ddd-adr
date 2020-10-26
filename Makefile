@@ -86,3 +86,7 @@ cpd:
 	@docker-compose exec php bin/console cache:pool:delete
 yarn:
 	@docker-compose exec admin yarn add aor-rich-text-input
+
+.PHONY: behat
+behat:
+	@docker-compose exec php php vendor/behat/behat/bin/behat

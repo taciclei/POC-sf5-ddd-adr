@@ -1,4 +1,4 @@
-Scenario: Create a programmer
+Scenario: Create a category
   Given I have the payload:
     """
     {
