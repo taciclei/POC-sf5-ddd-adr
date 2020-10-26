@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Infrastructure\Action\Rest\Category;
 
+use Ecommerce\Category\Dto\CategoryDto;
 use Ecommerce\Category\Dto\CategoryDtoInterface;
 use Ecommerce\Category\Response\PostCategoryResponseInterface;
 use Ecommerce\Entity\Category;
@@ -12,18 +13,23 @@ use FOS\RestBundle\View\View;
 use FOS\RestBundle\Controller\Annotations as Rest;
 use OpenApi\Annotations as OA;
 use Nelmio\ApiDocBundle\Annotation\Model;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Serializer\SerializerInterface;
 
 class PostCategoryAction extends AbstractFOSRestController
 {
     public PostCategoryResponseInterface $responder;
+    public SerializerInterface $serializer;
 
     /**
      * PostCategoryAction constructor.
      * @param PostCategoryResponseInterface $responder
+     * @param SerializerInterface $serializer
      */
-    public function __construct(PostCategoryResponseInterface $responder)
+    public function __construct(PostCategoryResponseInterface $responder, SerializerInterface $serializer)
     {
         $this->responder = $responder;
+        $this->serializer = $serializer;
     }
 
     /**
@@ -46,8 +52,10 @@ class PostCategoryAction extends AbstractFOSRestController
      * @param CategoryDtoInterface $categoryDto
      * @return View
      */
-    public function __invoke(CategoryDtoInterface $categoryDto): View
+    public function __invoke(Request $request): View
     {
+        $category  = $this->serializer->deserialize($request->getContent(), CategoryDto::class, 'json');
+        print_r($category);die;
         return $this->responder->render($categoryDto);
     }
 }

@@ -41,11 +41,11 @@ services:
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
 
-    Ecommerce\Category\Dto\CategoryDto:
-         calls:
-            - hydrateJson: ["@=service('request_stack').getCurrentRequest().getContent()"]
+    #Ecommerce\Category\Dto\CategoryDto:
+    #     calls:
+    #        - hydrateJson: ["@=service('request_stack').getCurrentRequest().getContent()"]
 
-    Infrastructure\Action\Rest\Category\PostCategoryAction:
+    #Infrastructure\Action\Rest\Category\PostCategoryAction:
     Infrastructure\Action\Rest\GetCategoryActiont:
     Laminas\Hydrator\ClassMethodsHydrator:
         class: Laminas\Hydrator\ClassMethodsHydrator

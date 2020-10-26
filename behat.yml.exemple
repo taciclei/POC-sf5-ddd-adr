@@ -1,16 +1,29 @@
 default:
+    autoload:
+        '': '%paths.base%/tests/Behat/features'
     suites:
         default:
+            paths:
+                features: tests/Behat/features
             contexts:
-                - FeatureContext:
-                      kernel: '@kernel'
+                #- FeatureContext:
+                    #- kernel: '@kernel'
+                    #- session: '@session'
                 - Behat\MinkExtension\Context\MinkContext
+                - behatch:context:browser
+                - behatch:context:debug
+                - behatch:context:system
                 - behatch:context:json
+                - behatch:context:table
                 - behatch:context:rest
+                - behatch:context:xml
     extensions:
         Behat\Symfony2Extension:
             kernel:
-                #bootstrap: features/bootstrap/bootstrap.php
+                #env: test
+                debug: true
+                bootstrap: config/bootstrap.php
+                path: src/Kernel.php
                 class: App\Kernel
         Behat\MinkExtension:
             base_url: "http://localhost/api"
