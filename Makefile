@@ -72,13 +72,21 @@ extract-cardinalities:
 
 clean-entity: clean-cache
 	@docker-compose exec php rm -rf src/Entity/
+.PHONY: dsc
 dsc:
 	@docker-compose exec php bin/console doctrine:schema:create
+.PHONY: dsu
 dsu:
 	@docker-compose exec php bin/console doctrine:schema:update --force
+.PHONY: dsd
 dsd:
 	@docker-compose exec php bin/console doctrine:schema:drop --force
+.PHONY: cpd
 cpd:
 	@docker-compose exec php bin/console cache:pool:delete
 yarn:
 	@docker-compose exec admin yarn add aor-rich-text-input
+
+.PHONY: behat
+behat:
+	@docker-compose exec php php vendor/behat/behat/bin/behat

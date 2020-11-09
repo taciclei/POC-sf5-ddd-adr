@@ -7,7 +7,7 @@ doctrine:
         #server_version: '5.7'
     orm:
         auto_generate_proxy_classes: true
-        naming_strategy: doctrine.orm.naming_strategy.underscore_number_aware
+        #1naming_strategy: doctrine.orm.naming_strategy.underscore_number_aware
         auto_mapping: true
         mappings:
             Ecommerce:
@@ -16,9 +16,3 @@ doctrine:
                 dir: '%kernel.project_dir%/src/Ecommerce/Entity'
                 prefix: 'Ecommerce\Entity'
                 alias: Ecommerce
-            App:
-                is_bundle: false
-                type: annotation
-                dir: '%kernel.project_dir%/src/Entity'
-                prefix: 'App\Entity'
-                alias: App

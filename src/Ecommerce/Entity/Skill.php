@@ -3,13 +3,12 @@
 namespace Ecommerce\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use OpenApi\Annotations as OA;
 
 /**
- * @ORM\Table(name="category")
- * @ORM\Entity(repositoryClass="Infrastructure\Doctrine\Ecommerce\Repository\CategoryRepository")
+ * @ORM\Entity
+ * @ORM\Table(name="oc_skill")
  */
-class Category
+class Skill
 {
   /**
    * @ORM\Column(name="id", type="integer")
@@ -20,12 +19,11 @@ class Category
 
   /**
    * @ORM\Column(name="name", type="string", length=255)
-   * @OA\Property(type="string", maxLength=255)
    */
-  public $name;
+  private $name;
 
   /**
-   * @return int
+   * @return integer
    */
   public function getId()
   {
